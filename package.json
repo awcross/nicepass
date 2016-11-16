@@ -1,0 +1,52 @@
+{
+  "name": "nicepass",
+  "version": "0.0.0",
+  "description": "Generate human-readable passphrases",
+  "license": "MIT",
+  "repository": "awcross/nicepass",
+  "author": {
+    "name": "Alex Cross",
+    "email": "crossaw@gmail.com",
+    "url": "alexcross.io"
+  },
+  "bin": {
+    "nicepass": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "niceware",
+    "diceware",
+    "passphrase",
+    "encryption",
+    "password",
+    "crypto",
+    "cryptography",
+    "entropy",
+    "security"
+  ],
+  "dependencies": {
+    "meow": "^3.7.0",
+    "niceware": "^1.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "execa": "^0.5.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "rules": {
+      "padded-blocks": 0
+    }
+  }
+}
