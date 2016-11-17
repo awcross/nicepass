@@ -23,7 +23,8 @@ const cli = meow(`
 
 try {
 	if (cli.flags.passphrase) {
-		console.log(niceware.passphraseToBytes(cli.flags.passphrase.split(' ')));
+		const str = cli.flags.passphrase.replace(/['"]+/g, '');
+		console.log(niceware.passphraseToBytes(str.split(' ')));
 
 	} else {
 		let size = 8;
