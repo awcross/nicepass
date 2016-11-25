@@ -2,7 +2,7 @@
 
 > Generate human-readable passphrases
 
-Uses [niceware](https://github.com/diracdeltas/niceware) underneath to generate or convert random bytes into passphrases.
+This is a CLI that uses [niceware](https://github.com/diracdeltas/niceware) to generate readable passwords or convert random bytes into a passphrase.
 
 
 ## Install
@@ -33,10 +33,9 @@ $ nicepass --help
 ```
 
 
-## Related
+## Credit
 
-- [niceware](https://github.com/diracdeltas/niceware) - API for this module
-
+Thanks to [yan](https://diracdeltas.github.io/) for creating [niceware](https://github.com/diracdeltas/niceware), which this module relies upon.
 
 
 ## License
