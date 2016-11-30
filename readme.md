@@ -18,24 +18,27 @@ $ npm install -g nicepass
 $ nicepass --help
 
   Usage
-    $ nicepass <size> [...]
+    $ nicepass <byte-size> [...]
 
   Options
-    --passphrase  Convert a phrase back into the original byte array
-	--pretty  Output the result as a string
+    --passphrase  Convert a phrase to hex
+	--raw  Output the result as the original value
 
   Examples
-    $ nicepass
-    [ 'plummet', 'observed', 'electra', 'dripping' ]
+    $ nicepass 8
+    plummet observed electra dripping
 
-    $ nicepass --passphrase='selfheal katzenjammer ambidexterity correcter puffer discern'
-    <Buffer c5 a5 75 a0 03 fd 2b ea ac bc 3a 65>
+    $ nicepass --passphrase='wigglier singing bicyclist clasher barrow haltering twirler asap'
+    fba4cb24113123240d975fcfea1d085d
+
+	$ nicepass --hex='05bd809ef433872f'
+	annoying malleably vapory mirk
 ```
 
 
-## Credit
+## Thanks
 
-Thanks to [yan](https://diracdeltas.github.io/) for creating [niceware](https://github.com/diracdeltas/niceware), which this module relies upon.
+All credit goes to [yan](https://diracdeltas.github.io/) for creating [niceware](https://github.com/diracdeltas/niceware), the API for this module.
 
 
 ## License

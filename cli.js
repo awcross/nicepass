@@ -5,26 +5,60 @@ const niceware = require('niceware');
 
 const cli = meow(`
 	Usage
-	  $ nicepass <size> [...]
+	  $ nicepass <byte-size> [...]
 
 	Options
-	  --passphrase  Convert a phrase back into the original byte array
-	  --pretty  Output the result as a string
+	  --passphrase  Convert a phrase to hex
+	  --raw  Output the result as the original value
 
 	Examples
-	  $ nicepass
-	  [ 'plummet', 'observed', 'electra', 'dripping' ]
+	  $ nicepass 8
+	  plummet observed electra dripping
 
-	  $ nicepass --passphrase='selfheal katzenjammer ambidexterity correcter puffer discern'
-	  <Buffer c5 a5 75 a0 03 fd 2b ea ac bc 3a 65>
+	  $ nicepass --passphrase='wigglier singing bicyclist clasher barrow haltering twirler asap'
+	  fba4cb24113123240d975fcfea1d085d
+
+	  $ nicepass --hex='05bd809ef433872f'
+	  annoying malleably vapory mirk
 `, {
-	boolean: 'pretty'
+	boolean: 'raw'
 });
 
 try {
 	if (cli.flags.passphrase) {
-		const str = cli.flags.passphrase.replace(/['"]+/g, '');
-		console.log(niceware.passphraseToBytes(str.split(' ')));
+		const str = cli.flags.passphrase.toLowerCase().replace(/['"]+/g, '');
+		const byteArray = niceware.passphraseToBytes(str.split(' '));
+
+		if (cli.flags.raw) {
+			console.log(byteArray);
+
+		} else {
+			let pretty = '';
+
+			for (let i = 0, j = byteArray.length; i < j; i++) {
+				let char = byteArray[i].toString(16);
+
+				if (char.length === 1) {
+					char = `0${char}`;
+				}
+
+				pretty += char;
+			}
+
+			console.log(pretty);
+		}
+
+	} else if (cli.flags.hex) {
+		const str = cli.flags.hex.toLowerCase().replace(/[,\s]/g, '');
+		const buffer = Buffer.from(str, 'hex');
+		const arr = niceware.bytesToPassphrase(buffer);
+
+		if (cli.flags.raw) {
+			console.log(arr);
+
+		} else {
+			console.log(arr.join(' '));
+		}
 
 	} else {
 		let size = 8;
@@ -37,13 +71,13 @@ try {
 			}
 		}
 
-		const passphrase = niceware.generatePassphrase(size);
+		const arr = niceware.generatePassphrase(size);
 
-		if (cli.flags.pretty) {
-			console.log(passphrase.join(' '));
+		if (cli.flags.raw) {
+			console.log(arr);
 
 		} else {
-			console.log(passphrase);
+			console.log(arr.join(' '));
 		}
 	}
 
