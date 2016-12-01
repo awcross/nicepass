@@ -18,21 +18,17 @@ $ npm install -g nicepass
 $ nicepass --help
 
   Usage
-    $ nicepass <byte-size> [...]
-
-  Options
-    --passphrase  Convert a phrase to hex
-	--raw  Output the result as the original value
+    $ nicepass <number|hex|phrase>
 
   Examples
     $ nicepass 8
     plummet observed electra dripping
 
-    $ nicepass --passphrase='wigglier singing bicyclist clasher barrow haltering twirler asap'
-    fba4cb24113123240d975fcfea1d085d
+    $ nicepass 05bd809ef433872f
+    annoying malleably vapory mirk
 
-	$ nicepass --hex='05bd809ef433872f'
-	annoying malleably vapory mirk
+    $ nicepass 'wigglier singing bicyclist clasher barrow haltering twirler asap'
+    fba4cb24113123240d975fcfea1d085d
 ```
 
 

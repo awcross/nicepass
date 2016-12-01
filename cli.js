@@ -5,35 +5,42 @@ const niceware = require('niceware');
 
 const cli = meow(`
 	Usage
-	  $ nicepass <byte-size> [...]
-
-	Options
-	  --passphrase  Convert a phrase to hex
-	  --raw  Output the result as the original value
+	  $ nicepass <number|hex|phrase>
 
 	Examples
 	  $ nicepass 8
 	  plummet observed electra dripping
 
-	  $ nicepass --passphrase='wigglier singing bicyclist clasher barrow haltering twirler asap'
-	  fba4cb24113123240d975fcfea1d085d
-
-	  $ nicepass --hex='05bd809ef433872f'
+	  $ nicepass 05bd809ef433872f
 	  annoying malleably vapory mirk
-`, {
-	boolean: 'raw'
-});
+
+	  $ nicepass 'wigglier singing bicyclist clasher barrow haltering twirler asap'
+	  fba4cb24113123240d975fcfea1d085d
+`);
+
+const input = cli.input[0];
 
 try {
-	if (cli.flags.passphrase) {
-		const str = cli.flags.passphrase.toLowerCase().replace(/['"]+/g, '');
-		const byteArray = niceware.passphraseToBytes(str.split(' '));
+	if (!input || typeof input === 'number') {
+		const size = input || 8;
+		const arr = niceware.generatePassphrase(size);
 
-		if (cli.flags.raw) {
-			console.log(byteArray);
+		console.log(arr.join(' '));
+
+	} else {
+		const arr = input.split(' ');
+
+		if (arr.length === 1) {
+			const str = input.toLowerCase().replace(/[,\s]/g, '');
+			const buffer = Buffer.from(str, 'hex');
+			const arr = niceware.bytesToPassphrase(buffer);
+
+			console.log(arr.join(' '));
 
 		} else {
-			let pretty = '';
+			const str = input.toLowerCase().replace(/['"]+/g, '');
+			const byteArray = niceware.passphraseToBytes(str.split(' '));
+			let output = '';
 
 			for (let i = 0, j = byteArray.length; i < j; i++) {
 				let char = byteArray[i].toString(16);
@@ -42,42 +49,10 @@ try {
 					char = `0${char}`;
 				}
 
-				pretty += char;
+				output += char;
 			}
 
-			console.log(pretty);
-		}
-
-	} else if (cli.flags.hex) {
-		const str = cli.flags.hex.toLowerCase().replace(/[,\s]/g, '');
-		const buffer = Buffer.from(str, 'hex');
-		const arr = niceware.bytesToPassphrase(buffer);
-
-		if (cli.flags.raw) {
-			console.log(arr);
-
-		} else {
-			console.log(arr.join(' '));
-		}
-
-	} else {
-		let size = 8;
-
-		if (cli.input.length > 0) {
-			size = cli.input[0];
-
-			if (typeof size === 'string') {
-				throw new TypeError('Expected a number');
-			}
-		}
-
-		const arr = niceware.generatePassphrase(size);
-
-		if (cli.flags.raw) {
-			console.log(arr);
-
-		} else {
-			console.log(arr.join(' '));
+			console.log(output);
 		}
 	}
 
