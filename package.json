@@ -36,12 +36,12 @@
   ],
   "dependencies": {
     "meow": "^3.7.0",
-    "niceware": "^1.0.1"
+    "niceware": "^1.0.4"
   },
   "devDependencies": {
-    "ava": "^0.15.2",
-    "execa": "^0.5.0",
-    "xo": "^0.16.0"
+    "ava": "^0.17.0",
+    "execa": "^0.6.0",
+    "xo": "^0.17.1"
   },
   "xo": {
     "esnext": true,
