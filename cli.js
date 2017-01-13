@@ -45,7 +45,7 @@ try {
 			for (let i = 0, j = byteArray.length; i < j; i++) {
 				let char = byteArray[i].toString(16);
 
-				if (char.length === 1) {
+				if (char.length === 1) { // eslint-disable-line max-depth
 					char = `0${char}`;
 				}
 
