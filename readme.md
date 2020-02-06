@@ -24,8 +24,8 @@ $ nicepass --help
     $ nicepass
     circularly transportal hypotenuse browsing framework
 
-		$ nicepass 10
-		workaholism washday liposoluble pinyon crosstalk
+    $ nicepass 10
+    workaholism washday liposoluble pinyon crosstalk
 
     $ nicepass 79446c84988885a444af
     lauderdale indisposition overgraze microcosm encomia
