@@ -35,16 +35,15 @@
     "security"
   ],
   "dependencies": {
-    "meow": "^3.7.0",
-    "niceware": "^1.0.4"
+    "meow": "^6.0.0",
+    "niceware": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "execa": "^0.6.0",
-    "xo": "^0.17.1"
+    "ava": "^3.2.0",
+    "execa": "^4.0.0",
+    "xo": "^0.25.3"
   },
   "xo": {
-    "esnext": true,
     "rules": {
       "padded-blocks": 0
     }
