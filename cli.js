@@ -8,21 +8,26 @@ const cli = meow(`
 	  $ nicepass <number|hex|phrase>
 
 	Examples
-	  $ nicepass 8
-	  plummet observed electra dripping
+	  $ nicepass
+	  circularly transportal hypotenuse browsing framework
 
-	  $ nicepass 05bd809ef433872f
-	  annoying malleably vapory mirk
+	  $ nicepass 10
+	  workaholism washday liposoluble pinyon crosstalk
+
+	  $ nicepass 79446c84988885a444af
+	  lauderdale indisposition overgraze microcosm encomia
 
 	  $ nicepass 'wigglier singing bicyclist clasher barrow haltering twirler asap'
 	  fba4cb24113123240d975fcfea1d085d
-`);
+`, {
+	inferType: true
+});
 
 const input = cli.input[0];
 
 try {
 	if (!input || typeof input === 'number') {
-		const size = input || 8;
+		const size = input || 10;
 		const arr = niceware.generatePassphrase(size);
 
 		console.log(arr.join(' '));
@@ -56,6 +61,6 @@ try {
 		}
 	}
 
-} catch (err) {
-	console.error(err.message);
+} catch (error) {
+	console.error(error.message);
 }
