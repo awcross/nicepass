@@ -18,14 +18,17 @@ $ npm install -g nicepass
 $ nicepass --help
 
   Usage
-    $ nicepass <number|hex|phrase>
+    $ nicepass <string|number>
 
   Examples
-    $ nicepass 8
-    plummet observed electra dripping
+    $ nicepass
+    circularly transportal hypotenuse browsing framework
 
-    $ nicepass 05bd809ef433872f
-    annoying malleably vapory mirk
+		$ nicepass 10
+		workaholism washday liposoluble pinyon crosstalk
+
+    $ nicepass 79446c84988885a444af
+    lauderdale indisposition overgraze microcosm encomia
 
     $ nicepass 'wigglier singing bicyclist clasher barrow haltering twirler asap'
     fba4cb24113123240d975fcfea1d085d
